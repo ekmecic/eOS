@@ -6,6 +6,8 @@
 #include "startup/interrupt_vector_table.h"
 #include "startup/startup.h"
 
+#include <libopencm3/stm32/rcc.h>
+
 extern u32 __bss_begin, __bss_end;
 extern u32 __data_begin, __data_end;
 extern u32 __datai_begin, __datai_end;
@@ -19,6 +21,9 @@ void eos_startup(void) {
 
   // Zero out flash
   memset(&__bss_begin, 0, &__bss_begin - &__bss_end);
+
+  // Set system clock to 64MHz
+  rcc_clock_setup_hsi(&rcc_hsi_8mhz[RCC_CLOCK_64MHZ]);
 
   // Enable kernel USART
   eos_usart_init();
