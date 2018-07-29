@@ -13,4 +13,4 @@ endian     = 'little'
 c_args = ['-mcpu=cortex-m4',
           '-mthumb']
 
-c_link_args = ['-nostdlib', '-lgcc']
+c_link_args = ['-nostdlib', '-lgcc', '-T../src/startup/stm32f303re.ld']

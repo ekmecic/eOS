@@ -1,10 +1,8 @@
 #include "usart.h"
 
 void eos_usart_print(char *str) {
-  char *c = str;
-  while (*c != '\0') {
-    usart_send_blocking(USART2, *c);
-    c++;
+  for (u16 i = 0; str[i] != '\0'; i++) {
+    usart_send_blocking(USART2, str[i]);
   }
 }
 

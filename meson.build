@@ -13,9 +13,6 @@ compilerArgs = ['-Wall',
                 '-DSTM32F3']
 add_project_arguments(compilerArgs, language: 'c')
 
-linkerArgs = ['-T' + meson.current_source_dir() + '/src/startup/stm32f303re.ld']
-add_project_link_arguments(linkerArgs, language: 'c')
-
 inc = include_directories('src')
 
 src = ['src/core/mem.h',
@@ -24,6 +21,8 @@ src = ['src/core/mem.h',
        'src/core/usart.c',
        'src/core/systick.h',
        'src/core/systick.c',
+       'src/core/util.h',
+       'src/core/util.c',
        'src/startup/startup.c',
        'src/startup/startup.h',
        'src/startup/interrupt_vector_table.h',

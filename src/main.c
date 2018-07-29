@@ -1,6 +1,7 @@
 #include "core/types.h"
 
 #include "core/usart.h"
+#include "core/util.h"
 
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/rcc.h>
@@ -16,7 +17,7 @@ void main(void) {
   gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5);
 
   while (true) {
-    eos_usart_println("test");
+    eos_printf("test: %x, %d", 4096, 4096);
     gpio_toggle(GPIOA, GPIO5);
     delay(3000);
   }
