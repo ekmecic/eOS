@@ -1,5 +1,6 @@
 #include "core/types.h"
 
+#include "config.h"
 #include "core/mem.h"
 #include "core/systick.h"
 #include "core/usart.h"
@@ -31,6 +32,7 @@ void eos_startup(void) {
   // Enable systick interrupt
   /* eos_systick_init(); */
 
-  // Run the main program
+  // Print the current version and run the main program
+  eos_printf("eOS version " EOS_VERSION "\n\n");
   main();
 }

@@ -1,6 +1,11 @@
 #pragma once
 
 //
+// eOS version
+//
+#define EOS_VERSION "0.1.0"
+
+//
 // Kernel USART settings
 //
 #define EOS_USART USART2                    // USART for kernel serial output
