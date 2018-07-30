@@ -6,7 +6,6 @@
 #include "startup/startup.h"
 
 void systick_handler(void) {
-  // something
   eos_printf("systick fired\n");
 }
 
