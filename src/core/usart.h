@@ -1,4 +1,4 @@
 #pragma once
 
 void eos_usart_print(char *);
-void eos_usart_init();
+void eos_usart_init(void);
