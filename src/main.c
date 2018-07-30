@@ -7,7 +7,7 @@
 
 void delay(u32 time) {
   for (u32 i = 0; i < time; i++)
-    for (uint8_t j = 0; j < 255; j++)
+    for (u8 j = 0; j < 255; j++)
       ;
 }
 
