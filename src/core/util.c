@@ -85,5 +85,5 @@ void eos_printf(const char *str, ...) {
   eos_fprintf(str, eos_usart_buffer, args);
   va_end(args);
 
-  eos_usart_println(eos_usart_buffer);
+  eos_usart_print(eos_usart_buffer);
 }

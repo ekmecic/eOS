@@ -17,8 +17,8 @@ void main(void) {
   gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5);
 
   while (true) {
-    eos_printf("test: %x, %d", 4096, 4096);
+    eos_printf("test: %x, %d\n", 4096, 4096);
     gpio_toggle(GPIOA, GPIO5);
-    delay(3000);
+    delay(30000);
   }
 }

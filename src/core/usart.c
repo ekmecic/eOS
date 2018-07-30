@@ -13,11 +13,6 @@ void eos_usart_print(char *str) {
   }
 }
 
-void eos_usart_println(char *str) {
-  eos_usart_print(str);
-  usart_send_blocking(USART2, '\n');
-}
-
 // Initialize the kernel serial output clock, USART peripheral, and GPIO pins
 void eos_usart_init() {
   // Enable kernel USART GPIO and peripheral clock

@@ -2,11 +2,12 @@
 
 #include "core/types.h"
 
+#include "core/util.h"
 #include "startup/startup.h"
 
 void systick_handler(void) {
   // something
-  eos_usart_println("systick fired");
+  eos_printf("systick fired\n");
 }
 
 extern u32 __stack_end;
