@@ -1,6 +1,5 @@
 #include "core/types.h"
 
-#include "core/usart.h"
 #include "core/util.h"
 
 #include <libopencm3/stm32/gpio.h>

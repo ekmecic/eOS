@@ -1,10 +1,9 @@
+#include "config.h"
 #include "core/types.h"
 
-#include "config.h"
 #include "core/mem.h"
-#include "core/systick.h"
 #include "core/usart.h"
-#include "startup/interrupt_vector_table.h"
+#include "core/util.h"
 #include "startup/startup.h"
 
 #include <libopencm3/stm32/rcc.h>
