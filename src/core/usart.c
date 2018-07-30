@@ -1,5 +1,12 @@
 #include "usart.h"
 
+#include "config.h"
+#include "core/types.h"
+
+#include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/usart.h>
+
 void eos_usart_print(char *str) {
   for (u16 i = 0; str[i] != '\0'; i++) {
     usart_send_blocking(USART2, str[i]);
@@ -11,16 +18,24 @@ void eos_usart_println(char *str) {
   usart_send_blocking(USART2, '\n');
 }
 
+// Initialize the kernel serial output clock, USART peripheral, and GPIO pins
 void eos_usart_init() {
-  rcc_periph_clock_enable(RCC_GPIOA);
-  rcc_periph_clock_enable(RCC_USART2);
-  usart_set_baudrate(USART2, 115200);
-  usart_set_databits(USART2, 8);
-  usart_set_stopbits(USART2, USART_STOPBITS_1);
-  usart_set_mode(USART2, USART_MODE_TX);
-  usart_set_parity(USART2, USART_PARITY_NONE);
-  usart_set_flow_control(USART2, USART_FLOWCONTROL_NONE);
-  usart_enable(USART2);
-  gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO2);
-  gpio_set_af(GPIOA, GPIO_AF7, GPIO2);
+  // Enable kernel USART GPIO and peripheral clock
+  rcc_periph_clock_enable(EOS_USART_TX_GPIO_CLOCK);
+  rcc_periph_clock_enable(EOS_USART_CLOCK);
+
+  // Configure parameters and enable kernel USART
+  usart_set_baudrate(EOS_USART, EOS_USART_BAUD_RATE);
+  usart_set_databits(EOS_USART, EOS_USART_DATABITS);
+  usart_set_stopbits(EOS_USART, EOS_USART_STOPBITS);
+  usart_set_mode(EOS_USART, USART_MODE_TX);
+  usart_set_parity(EOS_USART, EOS_USART_PARITY);
+  usart_set_flow_control(EOS_USART, EOS_USART_FLOW_CONTROL);
+  usart_enable(EOS_USART);
+
+  // Configure EOS USART TX line GPIO pin
+  gpio_mode_setup(EOS_USART_TX_GPIO_PORT, GPIO_MODE_AF, GPIO_PUPD_NONE,
+                  EOS_USART_TX_GPIO_PIN);
+  gpio_set_af(EOS_USART_TX_GPIO_PORT, EOS_USART_TX_GPIO_AF,
+              EOS_USART_TX_GPIO_PIN);
 }

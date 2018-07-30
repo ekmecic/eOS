@@ -15,7 +15,8 @@ add_project_arguments(compilerArgs, language: 'c')
 
 inc = include_directories('src')
 
-src = ['src/core/mem.h',
+src = ['src/config.h',
+       'src/core/mem.h',
        'src/core/mem.c',
        'src/core/usart.h',
        'src/core/usart.c',
