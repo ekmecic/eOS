@@ -7,7 +7,7 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/usart.h>
 
-void eos_usart_print(char *str) {
+void eos_usart_print(char* str) {
   for (u16 i = 0; str[i] != '\0'; i++) {
     usart_send_blocking(USART2, str[i]);
   }
@@ -29,8 +29,6 @@ void eos_usart_init() {
   usart_enable(EOS_USART);
 
   // Configure EOS USART TX line GPIO pin
-  gpio_mode_setup(EOS_USART_TX_GPIO_PORT, GPIO_MODE_AF, GPIO_PUPD_NONE,
-                  EOS_USART_TX_GPIO_PIN);
-  gpio_set_af(EOS_USART_TX_GPIO_PORT, EOS_USART_TX_GPIO_AF,
-              EOS_USART_TX_GPIO_PIN);
+  gpio_mode_setup(EOS_USART_TX_GPIO_PORT, GPIO_MODE_AF, GPIO_PUPD_NONE, EOS_USART_TX_GPIO_PIN);
+  gpio_set_af(EOS_USART_TX_GPIO_PORT, EOS_USART_TX_GPIO_AF, EOS_USART_TX_GPIO_PIN);
 }

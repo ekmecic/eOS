@@ -41,14 +41,20 @@ void eos_startup(void) {
   // Print the current version and run the main program
   eos_print_version();
 
-  eos_printf("bss_begin: %x\n"
-             "bss_end: %x\n"
-             "data_begin: %x\n"
-             "data_end: %x\n"
-             "datai_begin: %x\n"
-             "datai_end: %x\n"
-             "stack_end: %x\n",
-             &__bss_begin, &__bss_end, &__data_begin, &__data_end,
-             &__datai_begin, &__datai_end, &__stack_end);
+  eos_printf(
+      "bss_begin: %x\n"
+      "bss_end: %x\n"
+      "data_begin: %x\n"
+      "data_end: %x\n"
+      "datai_begin: %x\n"
+      "datai_end: %x\n"
+      "stack_end: %x\n",
+      &__bss_begin,
+      &__bss_end,
+      &__data_begin,
+      &__data_end,
+      &__datai_begin,
+      &__datai_end,
+      &__stack_end);
   main();
 }

@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-u8 eos_itoa(i32 num, char *buf, u8 radix) {
+u8 eos_itoa(i32 num, char* buf, u8 radix) {
   const char itoa_lut[20] = "0123456789ABCDEF";
 
   // Fail for crazy radixes
@@ -16,7 +16,7 @@ u8 eos_itoa(i32 num, char *buf, u8 radix) {
   bool is_negative = false;
   if (num < 0 && radix == 10) {
     is_negative = true;
-    num = 0 - num;
+    num         = 0 - num;
   }
 
   // Construct a backwards string using the lut
@@ -39,8 +39,8 @@ u8 eos_itoa(i32 num, char *buf, u8 radix) {
 
   // Reverse the string while ignoring padding zeros
   for (u8 i = 0; i < (num_chars / 2); i++) {
-    char tmp = buf[i];
-    buf[i] = buf[num_chars - i - 1];
+    char tmp               = buf[i];
+    buf[i]                 = buf[num_chars - i - 1];
     buf[num_chars - i - 1] = tmp;
   }
 
@@ -48,7 +48,7 @@ u8 eos_itoa(i32 num, char *buf, u8 radix) {
   return num_chars;
 }
 
-void eos_fprintf(const char *str, char *buf, va_list arg) {
+void eos_fprintf(const char* str, char* buf, va_list arg) {
   for (; *str != '\0'; str++) {
     // If we see a formatting specifier, jump ahead to the next char and
     // call itoa accordingly
@@ -77,8 +77,8 @@ void eos_fprintf(const char *str, char *buf, va_list arg) {
   *buf++ = '\0';
 }
 
-void eos_printf(const char *str, ...) {
-  char eos_usart_buffer[256];
+void eos_printf(const char* str, ...) {
+  char    eos_usart_buffer[256];
   va_list args;
 
   va_start(args, str);
