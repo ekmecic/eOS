@@ -35,14 +35,14 @@ SECTIONS {
     . = ALIGN(4);
     *(.text)
     *(.text*)
-  }
+  } > flash
 
   .rodata :
   {
     . = ALIGN(4);
     *(.rodata)
     *(.rodata.*)
-  }
+  } > flash
 
   .datai_begin :
   {
