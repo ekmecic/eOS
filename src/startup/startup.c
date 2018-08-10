@@ -4,6 +4,7 @@
 #include "core/mem.h"
 #include "core/usart.h"
 #include "core/util.h"
+#include "startup/interrupt_vector_table.h"
 #include "startup/startup.h"
 
 #include <libopencm3/stm32/rcc.h>
