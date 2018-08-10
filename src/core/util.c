@@ -50,8 +50,8 @@ u8 eos_itoa(i32 num, char *buf, u8 radix) {
 
 void eos_fprintf(const char *str, char *buf, va_list arg) {
   for (; *str != '\0'; str++) {
-    // If we see a formatting specifier, jump ahead to the next string and
-    // convert the arg to a str
+    // If we see a formatting specifier, jump ahead to the next char and
+    // call itoa accordingly
     if (*str == '%') {
       str++; // go to next char after %
       switch (*str) {

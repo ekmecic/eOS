@@ -28,7 +28,7 @@ void eos_startup(void) {
   // Zero out flash
   memset(&__bss_begin, 0, &__bss_begin - &__bss_end);
 
-  // Set system clock to 64MHz
+  // Set system clock to 64MHz based on the interal
   rcc_clock_setup_hsi(&rcc_hsi_8mhz[RCC_CLOCK_64MHZ]);
 
   // Enable kernel USART
