@@ -3,7 +3,7 @@
 //
 // eOS version
 //
-#define EOS_VERSION "0.1.0"
+#define EOS_VERSION "0.1.1"
 
 //
 // Kernel USART settings
