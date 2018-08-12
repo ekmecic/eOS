@@ -5,20 +5,33 @@
 #include "core/util.h"
 #include "startup/startup.h"
 
+// Defined in linker file
+extern u32 __stack_end;
+
 void systick_handler(void) {
   eos_printf("systick fired\n");
 }
 
-extern u32 __stack_end;
-__attribute__((section(".stack_top"), used)) u32 *st = &__stack_end;
+void fault_handler(void) {
+  // Read {usage, bus, memory management} fault status registers
+  __attribute__((unused)) volatile u16 ufsr  = *((u16*)0xE000ED2A);
+  __attribute__((unused)) volatile u8  bfsr  = *((u8*)0xE000ED29);
+  __attribute__((unused)) volatile u8  mmfsr = *((u8*)0xE000ED28);
+
+  // Set a breakpoint
+  __asm__ volatile("bkpt #0");
+}
+
+__attribute__((section(".stack_top"), used)) u32* st = &__stack_end;
+
 __attribute__((section(".vectors"), used)) void (*vector_table[])(void) = {
     // Core system interrupts
     eos_startup,     // isr_reset,
     0,               // isr_nmi,
-    0,               // isr_hard_fault,
-    0,               // isr_mem_manage_fault,
-    0,               // isr_bus_fault,
-    0,               // isr_usage_fault,
+    fault_handler,   // isr_hard_fault,
+    fault_handler,   // isr_mem_manage_fault,
+    fault_handler,   // isr_bus_fault,
+    fault_handler,   // isr_usage_fault,
     0,               // isr_reserved1,
     0,               // isr_reserved2,
     0,               // isr_reserved3,
