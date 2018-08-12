@@ -27,7 +27,7 @@ void eos_startup(void) {
   memcpy(&__datai_begin, &__data_begin, &__datai_end - &__datai_begin);
 
   // Zero out flash
-  memset(&__bss_begin, 0, &__bss_begin - &__bss_end);
+  memset(&__bss_begin, 0, &__bss_end - &__bss_begin);
 
   // Set system clock to 64MHz based on the interal
   rcc_clock_setup_hsi(&rcc_hsi_8mhz[RCC_CLOCK_64MHZ]);
