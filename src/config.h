@@ -24,3 +24,9 @@
 #define EOS_USART_TX_GPIO_PORT GPIOA      // TX GPIO port
 #define EOS_USART_TX_GPIO_PIN GPIO2       // TX GPIO pin number
 #define EOS_USART_TX_GPIO_AF GPIO_AF7     // TX GPIO alternate function
+
+//
+// Multitasking settings
+//
+#define EOS_MAX_TASKS 10           // Number of tasks
+#define EOS_DEFAULT_STACK_SIZE 256 // Stack size in words
