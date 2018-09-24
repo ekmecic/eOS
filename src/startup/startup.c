@@ -2,6 +2,7 @@
 #include "core/types.h"
 
 #include "core/mem.h"
+#include "core/systick.h"
 #include "core/usart.h"
 #include "core/util.h"
 #include "startup/interrupt_vector_table.h"
@@ -52,6 +53,8 @@ void eos_startup(void) {
       &__datai_begin,
       &__datai_end,
       &__stack_end);
+
+  eos_systick_init();
 
   main();
 }

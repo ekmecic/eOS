@@ -2,6 +2,7 @@
 
 #include "core/types.h"
 
+#include "core/task.h"
 #include "startup/startup.h"
 
 // Defined in linker file
@@ -9,6 +10,8 @@ extern u32 __stack_end;
 
 void systick_handler(void) {
   eos_printf("systick fired\n");
+  // Trigger a PendSV interrupt
+  *((uint32_t volatile*)0xE000ED04) = 0x10000000;
 }
 
 void fault_handler(void) {
@@ -38,7 +41,7 @@ __attribute__((section(".vectors"), used)) void (*vector_table[])(void) = {
     0,               // isr_svc,
     0,               // isr_debug_monitor,
     0,               // isr_reserved5,
-    0,               // isr_pend_sv,
+    pendsv_handler,  // isr_pendsv,
     systick_handler, // isr_systick,
 
     // Other interrupts

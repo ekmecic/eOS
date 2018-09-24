@@ -21,10 +21,24 @@ void task1(void) {
   }
 }
 
+void task2(void) {
+  while (true) {
+    eos_printf("Task #2!\n");
+  }
+}
+
 void main(void) {
   rcc_periph_clock_enable(RCC_GPIOA);
   gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5);
 
   u32 task1_stack[256];
-  eos_create_task(task1_stack, task1, EOS_DEFAULT_STACK_SIZE, 0);
+  eos_create_task(task1_stack, task1, EOS_DEFAULT_STACK_SIZE, 255);
+
+  u32 task2_stack[256];
+  eos_create_task(task2_stack, task2, EOS_DEFAULT_STACK_SIZE, 255);
+
+  eos_start();
+
+  while (1)
+    ;
 }
