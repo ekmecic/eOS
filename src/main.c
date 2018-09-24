@@ -26,5 +26,5 @@ void main(void) {
   gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5);
 
   u32 task1_stack[256];
-  eos_create_task(task1_stack, task1, EOS_DEFAULT_STACK_SIZE);
+  eos_create_task(task1_stack, task1, EOS_DEFAULT_STACK_SIZE, 0);
 }

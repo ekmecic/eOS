@@ -21,10 +21,11 @@ __attribute((naked)) void eos_start_task(u32* psp) {
       : "memory");
 }
 
-void eos_create_task(u32* psp, void (*func)(void), u32 stack_size) {
+void eos_create_task(u32* psp, void (*func)(void), const u32 stack_size, const u8 priority) {
   // Fill out an entry in the task table for the new task
-  eos_task_table[eos_task_table_size].psp  = psp;
-  eos_task_table[eos_task_table_size].func = func;
+  eos_task_table[eos_task_table_size].psp      = psp;
+  eos_task_table[eos_task_table_size].func     = func;
+  eos_task_table[eos_task_table_size].priority = priority;
   eos_task_table_size++;
 
   // Set up the task's stack
