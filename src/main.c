@@ -25,9 +25,6 @@ void main(void) {
   rcc_periph_clock_enable(RCC_GPIOA);
   gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5);
 
-  u32  task_stack[256];
-  u32* task_stack_start = task_stack + 256 - 16;
-  task_stack_start[8]   = (u32)&task1;
-
-  eos_start_task(task_stack_start);
+  u32 task1_stack[256];
+  eos_create_task(task1_stack, task1, EOS_DEFAULT_STACK_SIZE);
 }
