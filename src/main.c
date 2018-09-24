@@ -13,10 +13,9 @@ void delay(u32 time) {
       ;
 }
 
-static u32 p1_stack[EOS_DEFAULT_STACK_SIZE];
-
-void fast_led_blinker(void) {
+void task1(void) {
   while (true) {
+    eos_printf("Hello from task #1!\n");
     gpio_toggle(GPIOA, GPIO5);
     delay(10000);
   }
@@ -26,11 +25,9 @@ void main(void) {
   rcc_periph_clock_enable(RCC_GPIOA);
   gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5);
 
-  eos_task_init(fast_led_blinker, p1_stack, EOS_DEFAULT_STACK_SIZE);
+  u32  task_stack[256];
+  u32* task_stack_start = task_stack + 256 - 16;
+  task_stack_start[8]   = (u32)&task1;
 
-  while (true) {
-    eos_printf("test: %x, %d\n", 4096, 4096);
-    gpio_toggle(GPIOA, GPIO5);
-    delay(30000);
-  }
+  eos_start_task(task_stack_start);
 }

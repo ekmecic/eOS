@@ -18,8 +18,7 @@ extern void main(void);
 
 // Print current version and build info
 void eos_print_version(void) {
-  eos_printf("\n\neOS version " EOS_VERSION "\n"
-             "Compiled on " __DATE__ " " __TIME__ "\n\n");
+  eos_printf("\n\neOS version " EOS_VERSION "\nCompiled on " __DATE__ " " __TIME__ "\n\n");
 }
 
 void eos_startup(void) {
@@ -35,20 +34,17 @@ void eos_startup(void) {
   // Enable kernel USART
   eos_usart_init();
 
-  // Enable systick interrupt
-  /* eos_systick_init(); */
-
   // Print the current version and run the main program
   eos_print_version();
 
   eos_printf(
-      "bss_begin: %x\n"
-      "bss_end: %x\n"
-      "data_begin: %x\n"
-      "data_end: %x\n"
+      "bss_begin:   %x\n"
+      "bss_end:     %x\n"
+      "data_begin:  %x\n"
+      "data_end:    %x\n"
       "datai_begin: %x\n"
-      "datai_end: %x\n"
-      "stack_end: %x\n",
+      "datai_end:   %x\n"
+      "stack_end:   %x\n",
       &__bss_begin,
       &__bss_end,
       &__data_begin,
@@ -56,5 +52,6 @@ void eos_startup(void) {
       &__datai_begin,
       &__datai_end,
       &__stack_end);
+
   main();
 }
