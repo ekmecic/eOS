@@ -106,7 +106,6 @@ src = [
   'libopencm3/lib/stm32/f3/spi.c',
   'libopencm3/lib/stm32/f3/timer.c',
   'libopencm3/lib/stm32/f3/usart.c',
-  'libopencm3/lib/stm32/f3/vector_chipset.c',
   'libopencm3/lib/stm32/can.c',
   'libopencm3/lib/stm32/desig.c',
   'libopencm3/lib/stm32/st_usbfs_v1.c',
