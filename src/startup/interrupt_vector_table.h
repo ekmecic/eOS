@@ -2,7 +2,6 @@
 
 #include "core/types.h"
 
-#include "core/util.h"
 #include "startup/startup.h"
 
 // Defined in linker file
