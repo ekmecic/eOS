@@ -11,11 +11,12 @@
 
 ## Overview and features
 
-* **Simple.** Remains connected to IRC servers while you are offline.
+* **From scratch.** Started from nothing. Even the linker script and is homemade.
+* **Modern and open source.** Uses a modern, open source GNU GCC toolchain, and `meson`, a build system that isn't awful.
 * **Minimal dependencies.** Only dependency is libopencm3, which is used as the hardware abstraction layer. Who writes their own HAL these days anyway...
 * **No heap allocation.** No provision is made for heap allocation.
-* **Multitasking.**
-* **Learning experience.** You're bound to learn lots debugging this thing
+* **Multitasking.** Pre-emptive multitasking. No more `while (1)` loops.
+* **Learning experience.** You're bound to learn lots debugging this thing.
 
 ## Requirements
 
@@ -36,7 +37,7 @@ To get a build of eOS running on a board, run the following commands.
 meson build --cross-file cross_compiling_config.toml
 cd build
 
-# Build a binary
+# Make a binary
 ninja -j4
 
 # Flash device connected via ST-Link
@@ -48,11 +49,12 @@ ninja flash
 There's some additional build targets to make the developer's life easier
 
 ```sh
-ninja flash     # Flash an MCU connected via ST-Link
-ninja erase     # Erase MCU connected via ST-Link
-ninja gdb       # Launch a GDB server for debugging
-ninja size      # Show the size of the text, data, bss sections
-ninja sections  # Same as "size", but with more detail
+ninja flash       # Flash an MCU connected via ST-Link
+ninja erase       # Erase MCU connected via ST-Link
+ninja gdb         # Launch a GDB server for debugging
+ninja size        # Show the size of the text, data, bss sections
+ninja sections    # Same as "size", but with more detail
+ninja scan-build  # Run clang's static analyzer
 ```
 
 ## Directory structure
@@ -66,7 +68,7 @@ eOS
 ├── .clang-format                # Style file for automatic code formatting
 ├── assets                       # Non-essential data, i.e. logos
 ├── src                          # Source files
-│   ├── core                       # Core OS
+│   ├── core                       # Core OS routines
 │   ├── startup                    # Code used during startup phase
 │   ├── main.c                     # Main entry point
 │   └── config.h                   # Compile-time OS configurables
