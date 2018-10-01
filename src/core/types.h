@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-// Use Linux-style naming for integer types
+// Use Rust-style naming for integer types
 typedef uint8_t  u8;
 typedef uint16_t u16;
 typedef uint32_t u32;

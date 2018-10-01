@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 
+// Convert a integer to radix-base string
 u8 eos_itoa(i32 num, char* buf, u8 radix) {
   const char itoa_lut[20] = "0123456789ABCDEF";
 
@@ -48,6 +49,8 @@ u8 eos_itoa(i32 num, char* buf, u8 radix) {
   return num_chars;
 }
 
+// Process a string and replace format specifiers with their string representations
+// Mimics standard fprintf(), but only supports %d and %x format specifiers
 void eos_fprintf(const char* str, char* buf, va_list arg) {
   for (; *str != '\0'; str++) {
     // If we see a formatting specifier, jump ahead to the next char and
@@ -77,6 +80,7 @@ void eos_fprintf(const char* str, char* buf, va_list arg) {
   *buf++ = '\0';
 }
 
+// Acts like standard printf(), but only handles %d and %x
 void eos_printf(const char* str, ...) {
   char    eos_usart_buffer[256];
   va_list args;

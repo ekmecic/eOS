@@ -7,6 +7,7 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/usart.h>
 
+// Print a string char-by-char to USART
 void eos_usart_print(char* str) {
   for (u16 i = 0; str[i] != '\0'; i++) {
     usart_send_blocking(USART2, str[i]);

@@ -6,7 +6,7 @@ static eos_task eos_task_table[EOS_MAX_TASKS];
 static u32      eos_task_table_size = 0;
 
 void eos_create_task(u32* psp, void (*func)(void), const u32 stack_size, const u8 priority) {
-  // Set up the task's stack
+  // Set up the task's stack and set
   psp += stack_size - 16;
   psp[8] = (u32)func;
 
@@ -37,6 +37,7 @@ __attribute((naked)) void eos_start(void) {
       : "memory");
 }
 
+// Switches context between tasks
 __attribute((naked)) void pendsv_handler(void) {
   // Hardcoded values, to be replaced with scheduling in next commit
   u32* old_psp;
