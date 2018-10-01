@@ -19,6 +19,16 @@ extern void main(void);
 
 // Print current version and build info
 void eos_print_version(void) {
+  eos_printf("       .oOOOo.  .oOOOo. \n");
+  eos_printf("      .O     o. o     o \n");
+  eos_printf("      O       o O.      \n");
+  eos_printf("      o       O  `OOoo. \n");
+  eos_printf(".oOo. O       o       `O\n");
+  eos_printf("OooO' o       O        o\n");
+  eos_printf("O     `o     O' O.    .O\n");
+  eos_printf("`OoO'  `OoooO'   `oooO' \n");
+
+  eos_printf("\nWelcome to eOS!\n");
   eos_printf("\n\neOS version " EOS_VERSION "\nCompiled on " __DATE__ " " __TIME__ "\n\n");
 }
 
